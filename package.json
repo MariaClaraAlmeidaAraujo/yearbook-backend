@@ -9,5 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "API REST do Yearbook Digital — IFNMG Salinas 2026",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariaClaraAlmeidaAraujo/yearbook-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MariaClaraAlmeidaAraujo/yearbook-backend/issues"
+  },
+  "homepage": "https://github.com/MariaClaraAlmeidaAraujo/yearbook-backend#readme"
 }
