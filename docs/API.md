@@ -11,7 +11,7 @@
 
     ## Auth
 
-    ### POST /auth/register
+    ###POST /auth/register
 
     Cria uma nova conta de aluno.
 
@@ -48,8 +48,7 @@
     - **Erros:**
       - `400` — Campos obrigatórios ausentes
       - `409` — Email já cadastrado
-
-      ### POST /auth/login
+### POST /auth/login
 
     Autentica um aluno e retorna um token JWT.
 
