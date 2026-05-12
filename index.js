@@ -8,6 +8,12 @@ app.get('/', (req, res) => {
   res.json({ mensagem: 'Yearbook API está no ar! 🎓' });
 });
 
+if (process.env.VERCEL !== '1')
+app.get('/status', (req, res) => {
+  res.json({ statu: 'ok' , 
+    timestamp: new Date()
+   });
+  });
 // inicia o servidor localmente — na Vercel essa parte é pulada
 if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
@@ -18,7 +24,3 @@ if (process.env.VERCEL !== '1') {
 // exporta o app para a Vercel usar como serverless function
 export default app;
 
-if (process.env.VERCEL !== '1')
-app.get("/status", (req, res) => {
-  // implemente aqui
-});
