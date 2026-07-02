@@ -44,19 +44,20 @@ export async function buscarAluno(req, res) {
 // Dica: os dados do aluno vêm de req.body (nome, email, senhaHash, cidade, frase, planosFuturos)
 // Dica: retorne status 201 com o aluno criado
 export async function criarAluno(req, res) {
- const{nome, email , senhaHash, cidade, frase, planosFuturos}= req.body;
+ const{ nome, email , senhaHash, cidade, frase, planosFuturos} = req.body;
  const novoAluno = await prisma.aluno.create({
     data:{
         nome: nome,
-        email:email,
+        email: email,
         senhaHash: senhaHash,
-        ciade: cidade,
+        cidade: cidade,
         frase: frase,
         planosfuturos: planosFuturos,
 
     },
-    select: seletSemSenha // omote senhaHash
+    select: selectSemSenha // omite senhaHash
  });
+ res.status(201).json(novoAluno);
 }
 
 // 🎯 PUT /alunos/:id — atualiza um aluno existente
@@ -64,9 +65,8 @@ export async function criarAluno(req, res) {
 // Dica: o id vem de req.params, os dados atualizados de req.body
 // Dica: se o aluno não existir, o Prisma lança um erro — use try/catch
 export async function atualizarAluno (req, res) {
-
   const {id} = req.params; // extrai oid da URL
-  const { nome, email, senhaHash, cidade, frase, planosFuturos }
+  const { nome, email, senhaHash, cidade, frase, planosFuturos } = req.body;
    try{
      const aluno = await prisma.aluno.update({
         where: { id: Number(id)},
