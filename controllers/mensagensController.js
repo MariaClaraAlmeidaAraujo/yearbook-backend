@@ -27,19 +27,26 @@ export async function listarMensagens(req, res) {
 // 🎯 POST /mensagens — cria uma nova mensagem
 // Siga o mesmo padrão do criarAluno
 // Valide que texto não está vazio (400 se faltar)
-export async function criarMensagem(req, res) {
-  const { texto, imagemUrl, autorId } = req.body;
-  if (!texto) {
-    return res.status(400).json({ erro: "O campo texto é obrigatório." });
-  }
-    const novaMensagem = await prisma.mensagem.create({
+export async function criarMensagem(req, res, next) {
+  try {
+    const { texto, imagemUrl, autorId } = req.body;
+
+    if (!texto) {
+      return res.status(400).json({ erro: "O campo texto é obrigatório." });
+    }
+
+    const novaMensagem = await prisma.mensagens.create({
       data: {
         texto: texto,
         imagemUrl: imagemUrl,
         autorId: Number(autorId),
       },
     });
+
     return res.status(201).json(novaMensagem);
+  } catch (erro) {
+    next(erro);
+  }
 }
 
 // 🎯 DELETE /mensagens/:id — deleta uma mensagem
