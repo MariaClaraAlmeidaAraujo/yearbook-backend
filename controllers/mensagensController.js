@@ -2,8 +2,9 @@ import prisma from '../prisma/client.js'; // importa o singleton do Prisma
 
 // GET /mensagens — lista todas as mensagens (mais recentes primeiro, com dados do autor)
 export async function listarMensagens(req, res) {
+  try{
   const mensagens = await prisma.mensagem.findMany({
-    orderBy: { criadoEm: 'desc' },  // mais recente primeiro
+    orderBy: { criadorEm: 'desc' },  // mais recente primeiro
     include: {
       autor: {                        // traz dados do autor junto
         select: {
@@ -14,6 +15,11 @@ export async function listarMensagens(req, res) {
     },
   });
   res.json(mensagens); // retorna a lista com autor embutido
+  }
+  catch(error){
+    console.log(error)
+  }
+  
 }
 
 // --- Stubs para o desafio do aluno ---
@@ -28,8 +34,8 @@ export async function criarMensagem(req, res) {
   }
     const novaMensagem = await prisma.mensagem.create({
       data: {
-        texto,
-        imagemUrl,
+        texto: texto,
+        imagemUrl: imagemUrl,
         autorId: Number(autorId),
       },
     });
