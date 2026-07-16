@@ -35,7 +35,7 @@ export async function criarMensagem(req, res, next) {
       return res.status(400).json({ erro: "O campo texto é obrigatório." });
     }
 
-    const novaMensagem = await prisma.mensagens.create({
+    const novaMensagem = await prisma.mensagem.create({
       data: {
         texto: texto,
         imagemUrl: imagemUrl,

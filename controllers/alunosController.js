@@ -16,7 +16,7 @@ const selectSemSenha = {
 
 export async function listarAlunos(req, res, next) {  // adicione next aos parâmetros
   try {
-    const alunos = await prisma.alunoQueNaoExiste.findMany({
+    const alunos = await prisma.aluno.findMany({
       select: selectSemSenha,
     });
     res.json(alunos);

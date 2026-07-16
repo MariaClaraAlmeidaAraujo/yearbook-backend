@@ -248,3 +248,7 @@ Base URL (produção): `https://yearbook-backend-lake.vercel.app/`
     - **Erros:**
       - `403` - Sem permissão para deletar esse perfil.
       - `401` - Não está logado.
+
+## CORS
+
+Esta API tem CORS habilitado para qualquer origem. Você pode consumi-la de qualquer domínio (localhost, Vercel, etc.) sem configuração adicional no cliente.
